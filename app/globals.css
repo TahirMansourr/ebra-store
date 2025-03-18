@@ -7,10 +7,10 @@
 
 @layer components {
   .navbar {
-    @apply text-gray-700 flex items-center justify-between p-4 w-full px-10;
+    @apply text-gray-700 flex items-center justify-between  w-full py-6 ;
   }
   .actions-bar {
-    @apply flex items-center justify-between p-4 gap-3 ;
+    @apply flex items-center justify-between  gap-3 ;
   }
 }
 @theme inline {
