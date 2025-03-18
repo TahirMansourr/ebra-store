@@ -1,5 +1,5 @@
 import Hero from "./components/product-list-components/Hero";
-import NavBar from "./components/product-list-components/NavBar";
+import NavBar from "./components/product-list-components/navigation-components/NavBar";
 
 export default async function Home() {
   const products = await fetch("https://fakestoreapi.com/products").then(
