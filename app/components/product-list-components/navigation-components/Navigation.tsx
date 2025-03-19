@@ -1,7 +1,7 @@
 const Navigation = () => {
   return (
     <nav>
-      <ul className="flex space-x-4">
+      <ul className="  hidden md:flex md:space-x-4">
         <li className=" hover: cursor-pointer font-bold">Home</li>
         <li className=" hover: cursor-pointer hover:cursor-not-allowed">
           Products

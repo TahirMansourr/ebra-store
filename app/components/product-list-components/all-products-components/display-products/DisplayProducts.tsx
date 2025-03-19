@@ -20,7 +20,7 @@ const DisplayProducts = () => {
   ) {
     return (
       <div className="w-full">
-        <DisplayProductsHeader />
+        {/* <DisplayProductsHeader /> */}
         <h1 className="text-2xl text-center mt-8  mx-auto">
           No Products Found With these Filters
         </h1>

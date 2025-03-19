@@ -5,7 +5,7 @@ const NavBar = () => {
   return (
     <div className="navbar">
       <div>
-        <p className="font-bold text-2xl ">Ebra Store</p>
+        <p className="font-bold text-sm md:text-2xl ">Ebra Store</p>
       </div>
       <Navigation />
       <ActionsBar />

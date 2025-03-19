@@ -14,10 +14,10 @@ export default async function Home() {
   if (!products) return <div>Loading...</div>;
 
   const randomIndex = Math.floor(Math.random() * products.length);
-  const randomProduct = products[randomIndex];
+  const randomProduct = products[2];
 
   return (
-    <div className="flex flex-col w-screen px-[160px] ">
+    <div className="flex flex-col w-screen p-[20px] md:px-[160px] ">
       <NavBar />
       <Hero product={randomProduct} />
       <FilterProvider products={products}>

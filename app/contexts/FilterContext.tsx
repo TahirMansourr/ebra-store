@@ -23,6 +23,8 @@ type FilterContextDTO = {
   handleSort: (sortType: string) => void;
   viewType: ViewType;
   setViewType: (view: ViewType) => void;
+  showSortMenu: boolean;
+  setShowSortMenu: (show: boolean) => void;
 };
 
 const FilterContext = createContext<FilterContextDTO>({} as FilterContextDTO);
@@ -57,6 +59,7 @@ export const FilterProvider = ({
     label: string;
   } | null>({ min: 0, max: Infinity, label: "All Prices" });
   const [viewType, setViewType] = useState<ViewType>("grid-3");
+  const [showSortMenu, setShowSortMenu] = useState(false);
 
   console.log(filteredProducts);
 
@@ -143,6 +146,8 @@ export const FilterProvider = ({
     handleSort,
     viewType,
     setViewType,
+    showSortMenu,
+    setShowSortMenu,
   };
 
   return (
