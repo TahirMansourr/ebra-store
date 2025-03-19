@@ -2,6 +2,8 @@
 
 import { createContext, useContext, useState } from "react";
 
+type ViewType = "grid-1" | "grid-2" | "grid-3";
+
 type FilterContextDTO = {
   categories: string[];
   selectedCategory: string | null;
@@ -17,6 +19,9 @@ type FilterContextDTO = {
   }: {
     range: { min: number; max: number; label: string };
   }) => void;
+  handleSort: (sortType: string) => void;
+  viewType: ViewType;
+  setViewType: (view: ViewType) => void;
 };
 
 type Product = {
@@ -48,7 +53,9 @@ export const FilterProvider = ({
   products: Product[] | null;
 }) => {
   const [categories, setCategories] = useState<string[]>(getCategories());
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(
+    "All Products"
+  );
   const [filteredProducts, setFilteredProducts] = useState<Product[] | null>(
     products
   );
@@ -56,7 +63,8 @@ export const FilterProvider = ({
     min: number;
     max: number;
     label: string;
-  } | null>(null);
+  } | null>({ min: 0, max: Infinity, label: "All Prices" });
+  const [viewType, setViewType] = useState<ViewType>("grid-3");
 
   console.log(filteredProducts);
 
@@ -114,6 +122,25 @@ export const FilterProvider = ({
     setFilteredProducts(filtered);
   };
 
+  const handleSort = (sortType: string) => {
+    if (!filteredProducts) return;
+
+    const sortedProducts = [...filteredProducts];
+
+    switch (sortType) {
+      case "price-asc":
+        sortedProducts.sort((a, b) => a.price - b.price);
+        break;
+      case "price-desc":
+        sortedProducts.sort((a, b) => b.price - a.price);
+        break;
+      default:
+        break;
+    }
+
+    setFilteredProducts(sortedProducts);
+  };
+
   const value = {
     categories,
     selectedCategory,
@@ -121,6 +148,9 @@ export const FilterProvider = ({
     filteredProducts,
     selectedPriceRange,
     handleProductsAccordingToPrice,
+    handleSort,
+    viewType,
+    setViewType,
   };
 
   return (

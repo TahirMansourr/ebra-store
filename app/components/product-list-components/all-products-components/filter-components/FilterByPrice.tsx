@@ -17,7 +17,7 @@ const FilterByPrice = () => {
 
   return (
     <div className="space-y-4">
-      <h3 className="font-semibold text-lg">Price Range</h3>
+      <h3 className="font-semibold text-lg">Price</h3>
       <div className="flex flex-col space-y-2">
         {priceRanges.map((range, index) => (
           <label
@@ -29,7 +29,7 @@ const FilterByPrice = () => {
               type="checkbox"
               checked={selectedPriceRange?.label === range.label ? true : false}
               onChange={() => handleProductsAccordingToPrice({ range })}
-              className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              className="rounded border-gray-300 text-blue-600 focus:ring-blue-500 hover:cursor-pointer hover:scale-105"
             />
           </label>
         ))}
