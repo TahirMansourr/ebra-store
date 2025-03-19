@@ -1,5 +1,8 @@
+import FilterComponent from "./components/product-list-components/all-products-components/filter-components/FilterComponent";
+import ProductsSection from "./components/product-list-components/all-products-components/ProductsSection";
 import Hero from "./components/product-list-components/Hero";
 import NavBar from "./components/product-list-components/navigation-components/NavBar";
+import { FilterProvider } from "./contexts/FilterContext";
 
 export default async function Home() {
   const products = await fetch("https://fakestoreapi.com/products").then(
@@ -13,9 +16,12 @@ export default async function Home() {
   const randomProduct = products[randomIndex];
 
   return (
-    <div className="flex flex-col w-screen px-[160px] h-screen">
+    <div className="flex flex-col w-screen px-[160px] ">
       <NavBar />
       <Hero product={randomProduct} />
+      <FilterProvider products={products}>
+        <ProductsSection />
+      </FilterProvider>
     </div>
   );
 }
