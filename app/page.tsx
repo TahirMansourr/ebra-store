@@ -1,13 +1,28 @@
+"use client";
+import { useEffect, useState } from "react";
 import ProductsSection from "./components/product-list-components/all-products-components/ProductsSection";
-import Footer from "./components/product-list-components/Footer";
 import Hero from "./components/product-list-components/Hero";
 import NavBar from "./components/product-list-components/navigation-components/NavBar";
 import { FilterProvider } from "./contexts/FilterContext";
+import { Product } from "@/types";
 
-export default async function Home() {
-  const products = await fetch("https://fakestoreapi.com/products").then(
-    (res) => res.json()
-  );
+export default function Home() {
+  const [products, setProducts] = useState<Product[] | null>(null);
+
+  async function fetchProducts() {
+    const res = await fetch("https://fakestoreapi.com/products");
+    const products = await res.json();
+    setProducts(products);
+  }
+
+  async function setCartCookie() {
+    await fetch(`http://localhost:3000/api/cart`);
+  }
+
+  useEffect(() => {
+    setCartCookie();
+    fetchProducts();
+  }, []);
 
   if (!products) return <div>Loading...</div>;
 
