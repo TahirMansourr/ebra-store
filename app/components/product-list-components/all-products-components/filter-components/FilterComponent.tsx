@@ -1,6 +1,7 @@
 "use client";
 
 import { useFilterContext } from "@/app/contexts/FilterContext";
+import FilterByPrice from "./FilterByPrice";
 
 const FilterComponent = () => {
   const { categories, selectedCategory, handleCategorySelection } =
@@ -22,6 +23,7 @@ const FilterComponent = () => {
           </li>
         ))}
       </ul>
+      <FilterByPrice />
     </div>
   );
 };

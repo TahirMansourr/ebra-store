@@ -2,10 +2,16 @@ const Navigation = () => {
   return (
     <nav>
       <ul className="flex space-x-4">
-        <li className="hover:shadow hover: cursor-pointer">Home</li>
-        <li className="hover:shadow hover: cursor-pointer">Products</li>
-        <li className="hover:shadow hover: cursor-pointer">About</li>
-        <li className="hover:shadow hover: cursor-pointer">Contact Us</li>
+        <li className=" hover: cursor-pointer font-bold">Home</li>
+        <li className=" hover: cursor-pointer hover:cursor-not-allowed">
+          Products
+        </li>
+        <li className=" hover: cursor-pointer hover:cursor-not-allowed">
+          About
+        </li>
+        <li className=" hover: cursor-pointer hover:cursor-not-allowed">
+          Contact Us
+        </li>
       </ul>
     </nav>
   );
