@@ -7,12 +7,12 @@ const ProductDetails = async ({ params }: { params: { id: string } }) => {
   const singleProduct = await fetch(
     `https://fakestoreapi.com/products/${params.id}`
   ).then((response) => response.json());
-  console.log(singleProduct);
+
   return (
     <div className="flex flex-col w-screen p-[20px] md:px-[160px]">
       <NavBar />
       <BreadCrumbs product={singleProduct} />
-      <div className="flex gap-10 justify-between">
+      <div className="flex flex-col lg:flex-row lg:items-start lg:gap-20">
         <ImagesOfProduct ProductImage={singleProduct.image} />
         <ProductInfo product={singleProduct} />
       </div>

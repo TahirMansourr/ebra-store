@@ -8,7 +8,7 @@ const ImagesOfProduct = ({ ProductImage }: { ProductImage: string }) => {
   const images = [ProductImage, ProductImage, ProductImage, ProductImage];
 
   return (
-    <div className="w-full max-w-[500px]">
+    <div className="w-full max-w-[500px] mb-5">
       <div className="relative w-full aspect-square mb-4 rounded-lg overflow-hidden">
         <Image
           src={images[selectedImage]}

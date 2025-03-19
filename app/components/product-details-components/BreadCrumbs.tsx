@@ -3,20 +3,20 @@ import Link from "next/link";
 
 const BreadCrumbs = ({ product }: { product: Product }) => {
   return (
-    <nav aria-label="Breadcrumb" className="mb-4 text-sm">
+    <nav aria-label="Breadcrumb" className="mb-8 text-sm">
       <ol className="flex items-center space-x-2">
-        <li>
+        <li className="hidden md:block">
           <Link href="/" className="text-gray-500 hover:text-gray-700">
             Home
           </Link>
         </li>
-        <li className="text-gray-500">{`>`}</li>
-        <li>
+        <li className="hidden md:block text-gray-500">{`>`}</li>
+        <li className="hidden md:block">
           <Link href="/" className="text-gray-500 hover:text-gray-700">
             Shop
           </Link>
         </li>
-        <li className="text-gray-500">{`>`}</li>
+        <li className="hidden md:block text-gray-500">{`>`}</li>
         <li>
           <Link
             href={`/?category=${product.category}`}
@@ -26,7 +26,7 @@ const BreadCrumbs = ({ product }: { product: Product }) => {
           </Link>
         </li>
         <li className="text-gray-500">{`>`}</li>
-        <li className="text-gray-900 font-medium  ">{product.title}</li>
+        <li className="text-gray-900 font-medium">{product.title}</li>
       </ol>
     </nav>
   );
