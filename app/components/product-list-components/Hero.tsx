@@ -1,17 +1,7 @@
+import { Product } from "@/types";
 import Image from "next/image";
 
-const Hero = ({
-  product,
-}: {
-  product: {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
-  };
-}) => {
+const Hero = ({ product }: { product: Product }) => {
   return (
     <div className="relative w-full h-[300px] ">
       <Image
@@ -25,8 +15,7 @@ const Hero = ({
       <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
         <div className="text-white text-center p-6 max-w-4xl">
           <h1 className="text-4xl font-bold mb-4">{product.title}</h1>
-          <p className="text-xl mb-2">${product.price}</p>
-          <p className="text-lg">{product.category}</p>
+          <p className="text-xl mb-2">🔥 Trending </p>
         </div>
       </div>
     </div>

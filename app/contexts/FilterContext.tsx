@@ -1,5 +1,6 @@
 "use client";
 
+import { Product } from "@/types";
 import { createContext, useContext, useState } from "react";
 
 type ViewType = "grid-1" | "grid-2" | "grid-3";
@@ -22,15 +23,6 @@ type FilterContextDTO = {
   handleSort: (sortType: string) => void;
   viewType: ViewType;
   setViewType: (view: ViewType) => void;
-};
-
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
 };
 
 const FilterContext = createContext<FilterContextDTO>({} as FilterContextDTO);

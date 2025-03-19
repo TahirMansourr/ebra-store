@@ -29,7 +29,7 @@ const FilterByPrice = () => {
               type="checkbox"
               checked={selectedPriceRange?.label === range.label ? true : false}
               onChange={() => handleProductsAccordingToPrice({ range })}
-              className="rounded border-gray-300 text-blue-600 focus:ring-blue-500 hover:cursor-pointer hover:scale-105"
+              className="rounded border-gray-300 text-black focus:ring-black fill-black bg-black hover:cursor-pointer hover:scale-105"
             />
           </label>
         ))}
