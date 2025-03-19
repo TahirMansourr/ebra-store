@@ -1,43 +1,53 @@
 "use client";
 import { useCartContext } from "@/app/contexts/CartContext";
-import { Product } from "@/types";
-import { useState } from "react";
+import { CartDTO, Product } from "@/types";
+import { useEffect, useState } from "react";
 import { HiHeart, HiMinus, HiPlus } from "react-icons/hi";
 
 const AddToCart = ({ product }: { product: Product }) => {
   const { addToCart } = useCartContext();
   const [quantity, setQuantity] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [cart, setCart] = useState<CartDTO | null>(null);
+  async function fetchCart() {
+    const res = await fetch(`http://localhost:3000/api/cart`);
+    const fetchedCart = await res.json();
+    setCart(fetchedCart);
+    setIsLoading(false);
+  }
+  useEffect(() => {
+    fetchCart();
+  }, []);
 
   const handleAddToCart = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch("https://fakestoreapi.com/carts/1", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: 1,
-          userId: 1,
-          date: new Date().toISOString(),
-          products: [
-            {
-              productId: product.id,
-              quantity: quantity,
-            },
-          ],
-        }),
-      });
+      const response = await fetch(
+        `https://fakestoreapi.com/carts/${cart?.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: cart?.id,
+            userId: cart?.userId,
+            products: [
+              {
+                productId: product.id,
+                quantity: quantity,
+              },
+            ],
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to add to cart");
       }
-
       const data = await response.json();
       console.log("Added to cart:", data);
-
-      // Update local cart state
       addToCart(product, quantity);
       setQuantity(1);
     } catch (error) {

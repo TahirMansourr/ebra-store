@@ -61,7 +61,7 @@ export const FilterProvider = ({
   const [viewType, setViewType] = useState<ViewType>("grid-3");
   const [showSortMenu, setShowSortMenu] = useState(false);
 
-  console.log(filteredProducts);
+  // console.log(filteredProducts);
 
   function getCategories() {
     if (products) {
