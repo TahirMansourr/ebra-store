@@ -10,3 +10,9 @@ export type Product = {
         count : number
     }
 }
+
+export type CartDTO =  {
+    id: number;
+    userId: number;
+    products: { productId: number; quantity: number }[];
+  };
