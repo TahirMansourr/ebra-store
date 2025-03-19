@@ -4,8 +4,9 @@ import { Product } from "@/types";
 import { useEffect, useState } from "react";
 import { HiHeart, HiMinus, HiPlus } from "react-icons/hi";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import CartProvider, { useCartContext } from "@/app/contexts/CartContext";
+import AddToCart from "./AddToCart";
 
-// Add type for rating
 type Rating = {
   rating: number;
   count: number;
@@ -18,7 +19,6 @@ const ProductInfo = ({ product }: { product: Product }) => {
     minutes: 0,
     seconds: 0,
   });
-  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const targetDate = new Date();
@@ -84,40 +84,9 @@ const ProductInfo = ({ product }: { product: Product }) => {
           <TimeBox value={timeLeft.seconds} label="Seconds" />
         </div>
       </div>
-
-      <div className="flex flex-col space-y-4 lg:max-w-[600px] mt-4">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center bg-[#F5F5F5] rounded-md ">
-            <button
-              onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
-              className="p-2 hover:bg-gray-100 hover:cursor-pointer"
-            >
-              <HiMinus className="h-5 w-5" />
-            </button>
-            <span className="px-4 py-2 font-medium min-w-[40px] text-center">
-              {quantity}
-            </span>
-            <button
-              onClick={() => setQuantity((prev) => prev + 1)}
-              className="p-2 hover:bg-gray-100  hover:cursor-pointer"
-            >
-              <HiPlus className="h-5 w-5" />
-            </button>
-          </div>
-
-          <button className="flex items-center justify-center text-center w-full gap-2 px-4 py-2 border rounded-md hover:bg-gray-50">
-            <HiHeart className="h-5 w-5" />
-            <span>Wishlist</span>
-          </button>
-        </div>
-
-        <button
-          onClick={() => console.log("Add to cart:", quantity, "items")}
-          className="w-full bg-black text-white py-3 rounded-md hover:bg-gray-800 transition-colors"
-        >
-          Add to Cart
-        </button>
-      </div>
+      <CartProvider>
+        <AddToCart product={product} />
+      </CartProvider>
     </div>
   );
 };
